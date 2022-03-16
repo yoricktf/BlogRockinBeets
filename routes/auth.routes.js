@@ -4,6 +4,10 @@ const User = require('../models/User.model')
 const jwt = require('jsonwebtoken');
 const { isAuthenticated } = require("../middleware/jwt");
 
+router.get('/test', (req, res, next) => {
+  console.log('09090909090909090909090909');
+})
+
 router.post('/signup', (req, res, next) => {
   const { email, password, name } = req.body
   // check if email or name or password are empty
