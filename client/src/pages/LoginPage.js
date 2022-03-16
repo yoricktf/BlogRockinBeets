@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import { Button, Form } from 'semantic-ui-react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from '../context/auth'
@@ -61,21 +60,6 @@ const Login = () => {
 
       <h3>Don't have an account?</h3>
       <Link to='/signup'>Signup</Link>
-
-
-
-      <h1>================================================================</h1>
-      <Form size='massive'>
-        <Form.Field>
-          <label>First Name</label>
-          <input placeholder='First Name' />
-        </Form.Field>
-        <Form.Field>
-          <label>Last Name</label>
-          <input placeholder='Last Name' />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
-      </Form>
     </>
 
 
