@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import UserRecipesPage from './pages/UserRecipesPage';
 import NewRecipePage from './pages/NewRecipePage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -18,8 +19,26 @@ function App() {
         <Route path="/recipes/:id" element={<RecipePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/:user/recipes" element={<UserRecipesPage />} />
-        <Route path="/:user/recipes/:id" element={<NewRecipePage />} />
+        <Route path='/:user/recipes' element={
+          <ProtectedRoute redirectTo='/login'>
+            <UserRecipesPage />
+          </ProtectedRoute>
+        }
+        />
+        <Route path='/recipes/:id/new' element={
+          <ProtectedRoute redirectTo='/login'>
+            <NewRecipePage />
+          </ProtectedRoute>
+        }
+        />
+        <Route path='/recipes/new' element={
+          <ProtectedRoute redirectTo='/login'>
+            <NewRecipePage />
+          </ProtectedRoute>
+        }
+        />
+
+
         <Route path="*" element={<HomePage />} />
       </Routes>
     </div>

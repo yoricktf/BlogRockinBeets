@@ -25,16 +25,7 @@ export default function Signup() {
       })
   }
 
-  // const test = () => {
-  //   console.log('test');
-  //   axios.get('/api/test')
-  // }
 
-  const test = () => {
-    console.log('test');
-    const http = axios.create({ baseURL: 'http://localhost:5005' });
-    http.get('/api/test')
-  }
 
   const handleEmail = e => setEmail(e.target.value)
   const handleName = e => setName(e.target.value)
