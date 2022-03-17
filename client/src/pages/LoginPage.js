@@ -23,6 +23,7 @@ const Login = () => {
         // redirect to projects
         console.log('i have a token mothafukkas')
         const token = response.data.authToken
+        console.log(response.data);
         // Change: this only stores the token
         storeToken(token)
         // Change: we also call verify
