@@ -1,19 +1,19 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema(
+const recipeSchema = new Schema(
   {
-    name: { type: String, unique: true },
-    ingredients: Array,
-    picture: Array,
+    recipeName: { type: String, unique: true },
     description: String,
+    ingredients: Array,
     method: Array,
-    prepTime: Number,
-    cookTime: Number,
-    servingSize: Number,
-    difficulty: String,
+    prepTime: String,
+    cookTime: String,
+    servingSize: String,
+    difficulty: Number,
     tags: Array,
     author: { type: Schema.Types.ObjectId, ref: 'User' },
+    recipePicture: Array,
     published: Boolean,
   },
   {
@@ -22,6 +22,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const Recipe = model("Recipe", recipeSchema);
 
-module.exports = User;
+module.exports = Recipe;
