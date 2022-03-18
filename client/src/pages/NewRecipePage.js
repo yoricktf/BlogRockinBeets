@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import { AuthContext } from '../context/auth'
+import service from "../api/service";
 
 
 
@@ -26,10 +27,27 @@ const NewRecipePage = () => {
 
   const newRecipe = e => {
     e.preventDefault()
-    console.log(tags);
     axios.post('/recipe/newRecipe', { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
-
   }
+
+  const handleFileUpload = e => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("recipePicture", e.target.files[0]);
+
+    service
+      .uploadImage(uploadData)
+      .then(response => {
+        // console.log("response is: ", response);
+        // response carries "secure_url" which we can use to update the state
+        setRecipePicture(response.secure_url);
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
+  };
 
   return (
     <>
@@ -45,6 +63,8 @@ const NewRecipePage = () => {
             <Form.Label>Description</Form.Label>
             <Form.Control onChange={e => setDescription(e.target.value)} type="text" placeholder="enter method step by step" />
           </Form.Group>
+
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
 
           <Form.Group className="mb-3" controlId="">
             <Form.Label>Ingredients</Form.Label>

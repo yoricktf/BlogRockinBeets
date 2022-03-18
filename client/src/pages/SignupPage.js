@@ -47,7 +47,7 @@ export default function Signup() {
 
       {errorMessage && <h5>{errorMessage}</h5>}
 
-      <h1 onClick={test}>test</h1>
+      {/* <h1 onClick={test}>test</h1> */}
 
       <h3>Already have an account?</h3>
       <Link to='/login'>Login</Link>
