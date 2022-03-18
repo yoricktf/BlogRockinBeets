@@ -9,7 +9,8 @@ import { AuthProviderWrapper } from './context/auth'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-axios.defaults.baseURL = 'http://localhost:5005';
+// axios.defaults.baseURL = 'http://localhost:5005';
+axios.defaults.baseURL = 'https://blog-rockin-beets.herokuapp.com/';
 axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
