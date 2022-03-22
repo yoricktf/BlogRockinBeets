@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 
 const HomePage = () => {
   const [allRecipes, setAllRecipes] = useState([])
+  const [query, setQuery] = useState('')
 
   const getAllRecipes = () => {
     axios.get('recipe/getRecipes')
@@ -15,6 +16,13 @@ const HomePage = () => {
       })
   }
 
+  const search = () => {
+    // console.log(e.target.value);
+    allRecipes.filter(recipe => {
+
+    })
+  }
+
   useEffect(() => {
     getAllRecipes()
   }, [])
@@ -22,22 +30,41 @@ const HomePage = () => {
   return (
     <div>
       <Container>
-        {allRecipes.map((recipe) => (
+        <input type="text" placeholder='search through tags or recipe names' onChange={event => setQuery(event.target.value)} />
+
+        {allRecipes.filter(recipe => {
+          if (query === '') {
+            return recipe
+          } else if (recipe.recipeName.toLowerCase().includes(query.toLowerCase()) || recipe.tags.includes(query.toLowerCase())) {
+            return recipe
+          }
+        }).map((recipe) => (
           <a key={recipe._id} href={`/recipes/${recipe._id}`} >
             <Card className="" >
               <Card.Img src={recipe.recipePicture} alt="Card image" />
               <Card.ImgOverlay>
                 <Card.Title >{recipe.recipeName}</Card.Title>
-                {/* <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in to
-              additional content. This content is a little bit longer.
-            </Card.Text> */}
-                {/* <Card.Text>Last updated 3 mins ago</Card.Text> */}
+                <Card.Text>{recipe.tags}</Card.Text>
               </Card.ImgOverlay>
             </Card>
           </a>
 
         ))}
+
+
+
+        {/* {allRecipes.map((recipe) => (
+          <a key={recipe._id} href={`/recipes/${recipe._id}`} >
+            <Card className="" >
+              <Card.Img src={recipe.recipePicture} alt="Card image" />
+              <Card.ImgOverlay>
+                <Card.Title >{recipe.recipeName}</Card.Title>
+                <Card.Text>{recipe.tags}</Card.Text>
+              </Card.ImgOverlay>
+            </Card>
+          </a>
+
+        ))} */}
       </Container>
     </div >
   )
