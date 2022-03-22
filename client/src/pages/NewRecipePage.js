@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -9,9 +10,11 @@ import { AuthContext } from '../context/auth'
 import service from "../api/service";
 
 
-
 const NewRecipePage = () => {
+  const navigate = useNavigate()
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext)
+  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle eastern', 'french', 'slowcarb', 'basics']
+  // setting states for the recipe fields--------
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState('')
   const [description, setDescription] = useState('')
@@ -24,22 +27,23 @@ const NewRecipePage = () => {
   const [tags, setTags] = useState([])
   const [author, setAuthor] = useState(user)
   const [published, setPublished] = useState(false)
-  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle eastern', 'french', 'slowcarb', 'basics']
+  // -----------------------------------------------
+
 
   const newRecipe = e => {
-    e.preventDefault()
+    // e.preventDefault()
     axios.post('/recipe/newRecipe', { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
+    navigate('/')
   }
 
   const tagCheck = event => {
     let updatedTagList = [...tags];
-    if (event.target.tag) {
+    if (event.target.checked) {
       updatedTagList = [...tags, event.target.value];
     } else {
       updatedTagList.splice(tags.indexOf(event.target.value), 1);
     }
     setTags(updatedTagList)
-    console.log(tags);
   }
 
 
@@ -132,48 +136,12 @@ const NewRecipePage = () => {
               </Form.Select>
             </Col>
           </Row>
-
-          <Form.Group className="mb-3" controlId="">
-            <Form.Label>Method</Form.Label>
-            <Form.Text className="text-muted">
-              enter the different tags seperated by a dash ( % ). tag options include, vegan, breakfast, lunch, dinner, snack, dessert, italian, indian, asian, mexican, salad, drinks, middle eastern, french, slowcarb, basics
-            </Form.Text>
-            <Form.Control onChange={e => setTags(e.target.value.split('%'))} type="text" placeholder="" />
-          </Form.Group>
-
-          <Row>
-
-            {tagsArray.map((tag, index) => (
-              <div key={index}>
-                <input value={tag} type="checkbox" onChange={tagCheck} />
-                <span>{tag}</span>
-              </div>
-            ))}
-
-
-          </Row>
-
-          {/* <Row>
-            <Col>
-              <Form.Check
-                inline
-                type="switch"
-                id="custom-switch"
-                label="Vegan"
-                value="vegan"
-                onChange={e => setTags(...tags, e.target.value)}
-              />
-              <Form.Check
-                inline
-                type="switch"
-                id="custom-switch"
-                label="Vegetarian"
-                value="vegetarian"
-                onChange={e => setTags(...tags, e.target.value)}
-              />
-            </Col>
-          </Row> */}
-
+          {tagsArray.map((tag, index) => (
+            <div key={index}>
+              <input value={tag} type="checkbox" onChange={tagCheck} />
+              <span>{tag}</span>
+            </div>
+          ))}
           <Button variant="danger" type="submit">
             Make Recipe
           </Button>
