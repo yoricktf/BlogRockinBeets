@@ -24,26 +24,35 @@ const NewRecipePage = () => {
   const [tags, setTags] = useState([])
   const [author, setAuthor] = useState(user)
   const [published, setPublished] = useState(false)
+  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle eastern', 'french', 'slowcarb', 'basics']
 
   const newRecipe = e => {
     e.preventDefault()
     axios.post('/recipe/newRecipe', { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
   }
 
+  const tagCheck = event => {
+    let updatedTagList = [...tags];
+    if (event.target.tag) {
+      updatedTagList = [...tags, event.target.value];
+    } else {
+      updatedTagList.splice(tags.indexOf(event.target.value), 1);
+    }
+    setTags(updatedTagList)
+    console.log(tags);
+  }
+
+
+
+
+
+
   const handleFileUpload = e => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
     const uploadData = new FormData();
-
-    // imageUrl => this name has to be the same as in the model since we pass
-    // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("recipePicture", e.target.files[0]);
-
     service
       .uploadImage(uploadData)
       .then(response => {
-        // console.log("response is: ", response);
-        // response carries "secure_url" which we can use to update the state
         setRecipePicture(response.secure_url);
       })
       .catch(err => console.log("Error while uploading the file: ", err));
@@ -69,18 +78,18 @@ const NewRecipePage = () => {
           <Form.Group className="mb-3" controlId="">
             <Form.Label>Ingredients</Form.Label>
             <Form.Text className="text-muted">
-              enter the ingredients seperated by a dash ( - )
+              enter the ingredients seperated by 2 percentge signs ( %% )
             </Form.Text>
             {/* <Form.Control onChange={e => setIngredients(e.target.value)} type="text" placeholder="" /> */}
-            <Form.Control onChange={e => setIngredients(e.target.value.split('-'))} type="text" placeholder="" />
+            <Form.Control onChange={e => setIngredients(e.target.value.split('%%'))} type="text" placeholder="" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="">
             <Form.Label>Method</Form.Label>
             <Form.Text className="text-muted">
-              enter the different steps seperated by a dash ( - )
+              enter the different steps seperated by 2 percentage signs ( %% )
             </Form.Text>
-            <Form.Control onChange={e => setMethod(e.target.value.split('-'))} type="text" placeholder="" />
+            <Form.Control onChange={e => setMethod(e.target.value.split('%%'))} type="text" placeholder="" />
           </Form.Group>
 
           <Row>
@@ -123,8 +132,28 @@ const NewRecipePage = () => {
               </Form.Select>
             </Col>
           </Row>
+
+          <Form.Group className="mb-3" controlId="">
+            <Form.Label>Method</Form.Label>
+            <Form.Text className="text-muted">
+              enter the different tags seperated by a dash ( % ). tag options include, vegan, breakfast, lunch, dinner, snack, dessert, italian, indian, asian, mexican, salad, drinks, middle eastern, french, slowcarb, basics
+            </Form.Text>
+            <Form.Control onChange={e => setTags(e.target.value.split('%'))} type="text" placeholder="" />
+          </Form.Group>
+
           <Row>
 
+            {tagsArray.map((tag, index) => (
+              <div key={index}>
+                <input value={tag} type="checkbox" onChange={tagCheck} />
+                <span>{tag}</span>
+              </div>
+            ))}
+
+
+          </Row>
+
+          {/* <Row>
             <Col>
               <Form.Check
                 inline
@@ -143,7 +172,8 @@ const NewRecipePage = () => {
                 onChange={e => setTags(...tags, e.target.value)}
               />
             </Col>
-          </Row>
+          </Row> */}
+
           <Button variant="danger" type="submit">
             Make Recipe
           </Button>

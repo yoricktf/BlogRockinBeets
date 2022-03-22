@@ -19,14 +19,11 @@ const HomePage = () => {
     getAllRecipes()
   }, [])
 
-
-  console.log(allRecipes);
-
   return (
     <div>
       <Container>
         {allRecipes.map((recipe) => (
-          <a href={`/recipes/${recipe._id}`} >
+          <a key={recipe._id} href={`/recipes/${recipe._id}`} >
             <Card className="" >
               <Card.Img src={recipe.recipePicture} alt="Card image" />
               <Card.ImgOverlay>
@@ -35,7 +32,7 @@ const HomePage = () => {
               This is a wider card with supporting text below as a natural lead-in to
               additional content. This content is a little bit longer.
             </Card.Text> */}
-                <Card.Text>Last updated 3 mins ago</Card.Text>
+                {/* <Card.Text>Last updated 3 mins ago</Card.Text> */}
               </Card.ImgOverlay>
             </Card>
           </a>
