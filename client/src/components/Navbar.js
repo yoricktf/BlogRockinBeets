@@ -38,15 +38,14 @@ const WebNavbar = () => {
           (
             <div>
               <Navbar.Brand href="/">
-                Recipes
+                Blog Rockin Beets
               </Navbar.Brand>
               <Button href='/recipes/new'>New Recipe</Button>
               <Button variant='danger' onClick={logoutUser}>Log Out</Button>
             </div>
-
           ) : (
             <Navbar.Brand href="/">
-              Recipes
+              Blog Rockin Beets
             </Navbar.Brand>
           )}
       </Container>

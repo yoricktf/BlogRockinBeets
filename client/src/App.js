@@ -19,18 +19,18 @@ function App() {
         <Route path="/recipes/:id" element={<RecipePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path='/:user/recipes' element={
+        {/* <Route path='/:user/recipes' element={
           <ProtectedRoute redirectTo='/login'>
             <UserRecipesPage />
           </ProtectedRoute>
         }
-        />
-        <Route path='/recipes/:id/new' element={
+        /> */}
+        {/* <Route path='/recipes/:id/new' element={
           <ProtectedRoute redirectTo='/login'>
             <NewRecipePage />
           </ProtectedRoute>
         }
-        />
+        /> */}
         <Route path='/recipes/new' element={
           <ProtectedRoute redirectTo='/login'>
             <NewRecipePage />

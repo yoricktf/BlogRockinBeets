@@ -47,14 +47,14 @@ const RecipePage = () => {
         <h2>Ingredients</h2>
 
         <ul>
-          {recipe.ingredients?.map(step => (
-            <li>{step}</li>
+          {recipe.ingredients?.map((step, index) => (
+            <li key={index}>{step}</li>
           ))}
         </ul>
         <h2>Method</h2>
         <ol>
-          {recipe.method?.map(step => (
-            <li>{step}</li>
+          {recipe.method?.map((step, index) => (
+            <li key={index}>{step}</li>
           ))}
         </ol>
       </Container>
