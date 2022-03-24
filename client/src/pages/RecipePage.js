@@ -47,15 +47,14 @@ const RecipePage = () => {
       </div>
       <Container>
 
-        {!user ? (<></>) : (
-          user._id === recipe.author ? (
-            <>
-
-              <Button href={`/recipes/${recipe._id}/edit`}>edit this recipe</Button>
-            </>
-          ) : (
-            <></>
-          )
+        {user ? (user._id === recipe.author ? (
+          <>
+            <Button href={`/recipes/${recipe._id}/edit`}>edit this recipe</Button>
+          </>
+        ) : (
+          <></>
+        )) : (
+          <></>
         )}
 
         <h2>Description</h2>
