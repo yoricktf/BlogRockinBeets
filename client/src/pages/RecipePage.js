@@ -1,12 +1,15 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import { AuthContext } from '../context/auth';
 
 
 
 const RecipePage = () => {
   const { id } = useParams()
+  const { isLoggedIn, user } = useContext(AuthContext)
   const [recipe, setRecipe] = useState({})
   const [ingredients, setIngredients] = useState([])
   const [method, setMethod] = useState([])
@@ -33,6 +36,7 @@ const RecipePage = () => {
   }, [])
 
 
+
   return (
     <>
       <div style={{
@@ -42,6 +46,18 @@ const RecipePage = () => {
         <h1>{recipe.recipeName}</h1>
       </div>
       <Container>
+
+        {!user ? (<></>) : (
+          user._id === recipe.author ? (
+            <>
+
+              <Button href={`/recipes/${recipe._id}/edit`}>edit this recipe</Button>
+            </>
+          ) : (
+            <></>
+          )
+        )}
+
         <h2>Description</h2>
         <p>{recipe.description}</p>
         <h2>Ingredients</h2>

@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../context/auth';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+
 
 
 const HomePage = () => {
-  const { isLoggedIn, user } = useContext(AuthContext)
+
   const [allRecipes, setAllRecipes] = useState([])
   const [query, setQuery] = useState('')
 
@@ -25,7 +24,7 @@ const HomePage = () => {
       })
   }
 
-  console.log(user)
+
 
 
   useEffect(() => {
@@ -67,14 +66,6 @@ const HomePage = () => {
               <Card.Img src={recipe.recipePicture} alt="Card image" />
               <Card.ImgOverlay>
                 <Card.Title >{recipe.recipeName}</Card.Title>
-                {user._id === recipe.author ? (
-                  <>
-
-                    <Button href='/login'>edit this recipe</Button>
-                  </>
-                ) : (
-                  <></>
-                )}
                 <Card.Text>{recipe.tags}</Card.Text>
 
               </Card.ImgOverlay>

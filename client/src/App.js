@@ -21,16 +21,15 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         {/* <Route path='/:user/recipes' element={
           <ProtectedRoute redirectTo='/login'>
-            <UserRecipesPage />
-          </ProtectedRoute>
+             </ProtectedRoute>
         }
         /> */}
-        {/* <Route path='/recipes/:id/new' element={
+        <Route path='/recipes/:id/edit' element={
           <ProtectedRoute redirectTo='/login'>
             <NewRecipePage />
           </ProtectedRoute>
         }
-        /> */}
+        />
         <Route path='/recipes/new' element={
           <ProtectedRoute redirectTo='/login'>
             <NewRecipePage />
