@@ -11,6 +11,10 @@ router.post('/newRecipe', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.post('/editRecipe', (req, res, next) => {
+  console.log(req.body);
+})
+
 router.post("/upload", fileUploader.single("recipePicture"), (req, res, next) => {
   if (!req.file) {
     next(new Error("No file uploaded!"));
