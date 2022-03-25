@@ -31,18 +31,18 @@ const EditRecipePage = () => {
   // -----------------------------------------------
   const { id } = useParams()
 
-
   console.log(recipe);
+
 
   const getSpecificRecipe = async () => {
     const response = await axios.post('/recipe/specificRecipe', { id })
     setRecipe(response.data)
-    setIngredients(response.data.ingredients)
-    setMethod(response.data.method)
   }
 
-  const editRecipe = () => {
-
+  const editRecipe = (e) => {
+    e.preventDefault()
+    axios.post('/recipe/editRecipe', { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
+    console.log('hello');
   }
 
   const tagCheck = event => {
@@ -54,6 +54,8 @@ const EditRecipePage = () => {
     }
     setTags(updatedTagList)
   }
+
+
 
 
 
@@ -71,6 +73,11 @@ const EditRecipePage = () => {
   useEffect(() => {
     getSpecificRecipe()
   }, [])
+
+
+
+
+
 
 
   return (
@@ -95,7 +102,11 @@ const EditRecipePage = () => {
             <Form.Text className="text-muted">
               enter the ingredients seperated by 2 percentge signs ( %% )
             </Form.Text>
-            <Form.Control onChange={e => setIngredients(e.target.value.split('%%'))} type="text" placeholder="" />
+            <Form.Control
+              value={recipe.ingredients?.join('%%')}
+              onChange={e => setIngredients(e.target.value.split('%%'))}
+              type="text"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="">
@@ -103,57 +114,65 @@ const EditRecipePage = () => {
             <Form.Text className="text-muted">
               enter the different steps seperated by 2 percentage signs ( %% )
             </Form.Text>
-            <Form.Control onChange={e => setMethod(e.target.value.split('%%'))} type="text" placeholder="" />
+            <Form.Control
+              value={recipe.method?.join('%%')}
+              onChange={e => setMethod(e.target.value.split('%%'))}
+              type="text"
+            />
           </Form.Group>
 
           <Row>
             <Col>
               <Form.Label>Prep Time</Form.Label>
               <Form.Select onChange={e => setPrepTime(e.target.value)}>
-                <option value="0-15">0-15</option>
-                <option value="15-30">15-30</option>
-                <option value="30-60">30-60</option>
-                <option value="60-90">60-90</option>
-                <option value="90-120">90-120</option>
-                <option value=">120">>120</option>
+                <option selected={recipe.prepTime === '0-15' ? true : false} value="0-15">0-15</option>
+                <option selected={recipe.prepTime === '15-30' ? true : false} value="15-30">15-30</option>
+                <option selected={recipe.prepTime === '30-60' ? true : false} value="30-60">30-60</option>
+                <option selected={recipe.prepTime === '60-90' ? true : false} value="60-90">60-90</option>
+                <option selected={recipe.prepTime === '90-120' ? true : false} value="90-120">90-120</option>
+                <option selected={recipe.prepTime === '>120' ? true : false} value=">120">>120</option>
               </Form.Select>
             </Col>
             <Col>
               <Form.Label>Cooking Time</Form.Label>
               <Form.Select onChange={e => setCookTime(e.target.value)}>
-                <option value="0-15">0-15</option>
-                <option value="15-30">15-30</option>
-                <option value="30-60">30-60</option>
-                <option value="60-90">60-90</option>
-                <option value="90-120">90-120</option>
-                <option value=">120">>120</option>
+                <option selected={recipe.cookTime === '0-15' ? true : false} value="0-15">0-15</option>
+                <option selected={recipe.cookTime === '15-30' ? true : false} value="15-30">15-30</option>
+                <option selected={recipe.cookTime === '30-60' ? true : false} value="30-60">30-60</option>
+                <option selected={recipe.cookTime === '60-90' ? true : false} value="60-90">60-90</option>
+                <option selected={recipe.cookTime === '90-120' ? true : false} value="90-120">90-120</option>
+                <option selected={recipe.cookTime === '>120' ? true : false} value=">120">>120</option>
               </Form.Select>
             </Col>
             <Col>
               <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Serving Size</Form.Label>
-                <Form.Control onChange={e => setServingSize(e.target.value)} type="text" placeholder="Serving Size" />
+                <Form.Control value={recipe.servingSize} onChange={e => setServingSize(e.target.value)} type="text" placeholder="Serving Size" />
               </Form.Group>
             </Col>
             <Col>
               <Form.Label>Difficulty</Form.Label>
               <Form.Select onChange={e => setDifficulty(e.target.value)}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option selected={recipe.difficulty === 1 ? true : false} value="1">1</option>
+                <option selected={recipe.difficulty === 2 ? true : false} value="2">2</option>
+                <option selected={recipe.difficulty === 3 ? true : false} value="3">3</option>
+                <option selected={recipe.difficulty === 4 ? true : false} value="4">4</option>
+                <option selected={recipe.difficulty === 5 ? true : false} value="5">5</option>
               </Form.Select>
             </Col>
           </Row>
           {tagsArray.map((tag, index) => (
             <div key={index}>
-              <input value={tag} type="checkbox" onChange={tagCheck} />
+              <input
+                // checked={recipe.tags?.includes(tag) ? true : false}
+                value={tag}
+                type="checkbox"
+                onChange={tagCheck} />
               <span>{tag}</span>
             </div>
           ))}
           <Button variant="danger" type="submit">
-            Make Recipe
+            Update Recipe
           </Button>
         </Form>
       </Container>

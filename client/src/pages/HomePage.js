@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import Badge from 'react-bootstrap/Badge';
 
 
 
@@ -9,18 +10,15 @@ const HomePage = () => {
 
   const [allRecipes, setAllRecipes] = useState([])
   const [query, setQuery] = useState('')
-
-  // const randomNumber = Math.floor(Math.random(allRecipes.length - 1))
-  let randomRecipe = allRecipes[2]
+  const [randomRecipe, setRandomRecipe] = useState({})
 
 
 
   const getAllRecipes = () => {
     axios.get('recipe/getRecipes')
       .then(allRecipes => {
-        // console.log(allRecipes.data);
         setAllRecipes(allRecipes.data)
-
+        setRandomRecipe(allRecipes.data[Math.floor(Math.random() * allRecipes.data.length)]);
       })
   }
 
@@ -31,18 +29,22 @@ const HomePage = () => {
     getAllRecipes()
   }, [])
 
+  console.log(randomRecipe);
+
   return (
     <>
       {/* <p>{randomNumber}</p> */}
-      {/* <a key={randomRecipe._id} href={`/recipes/${randomRecipe._id}`} >
-        <Card className="" >
+      <a key={randomRecipe._id} href={`/recipes/${randomRecipe._id}`} >
+        <Card style={{ width: '50%', margin: 10 }}>
           <Card.Img src={randomRecipe.recipePicture} alt="Card image" />
           <Card.ImgOverlay>
             <Card.Title >{randomRecipe.recipeName}</Card.Title>
-            <Card.Text>{randomRecipe.tags}</Card.Text>
+            {randomRecipe.tags?.map((tag, index) => (
+              <Badge key={index}>{tag}</Badge>
+            ))}
           </Card.ImgOverlay>
         </Card>
-      </a> */}
+      </a>
 
 
 
@@ -60,14 +62,15 @@ const HomePage = () => {
             return recipe
           }
         }).map((recipe) => (
-
           <a key={recipe._id} href={`/recipes/${recipe._id}`} >
-            <Card className="" >
+            <Card style={{ margin: 10 }}>
               <Card.Img src={recipe.recipePicture} alt="Card image" />
               <Card.ImgOverlay>
                 <Card.Title >{recipe.recipeName}</Card.Title>
-                <Card.Text>{recipe.tags}</Card.Text>
-
+                {/* <Card.Text>{recipe.tags}</Card.Text> */}
+                {recipe.tags?.map((tag, index) => (
+                  <Badge key={index}>{tag}</Badge>
+                ))}
               </Card.ImgOverlay>
             </Card>
           </a>
