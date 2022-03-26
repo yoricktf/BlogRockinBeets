@@ -12,7 +12,14 @@ router.post('/newRecipe', (req, res, next) => {
 })
 
 router.post('/editRecipe', (req, res, next) => {
-  console.log(req.body);
+  const { id, recipeName, recipePicture, description, prepTime, cookTime, servingSize, difficulty, author, tags, published } = req.body
+  const ingredients = req.body.ingredients.split('%%')
+  const method = req.body.method.split('%%')
+  Recipe.findByIdAndUpdate(id, {
+    ingredients, method, recipeName, recipePicture, description, prepTime, cookTime, servingSize, difficulty, author, tags, published
+  }, { new: true })
+    // .then(updatedRecipe => console.log(updatedRecipe))
+    .catch(error => next(error));
 })
 
 router.post("/upload", fileUploader.single("recipePicture"), (req, res, next) => {

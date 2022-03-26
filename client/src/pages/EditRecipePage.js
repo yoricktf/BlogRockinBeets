@@ -27,6 +27,8 @@ const EditRecipePage = () => {
   const [tags, setTags] = useState([])
   const [author, setAuthor] = useState(user)
   const [published, setPublished] = useState(false)
+  // const [ingredientsBase, setIngredientsBase] = useState('')
+  // const [methodBase, setMethodBase] = useState('')
   // const [recipe, setRecipe] = useState({})
   // -----------------------------------------------
   const { id } = useParams()
@@ -38,12 +40,11 @@ const EditRecipePage = () => {
     const response = await axios.post('/recipe/specificRecipe', { id })
     const { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published } = response.data
     // setRecipe(response.data)
-    // setRecipeName(response.data.recipeName)
     setRecipeName(recipeName)
-    setIngredients(ingredients)
+    setIngredients(ingredients.join('%%'))
     setDescription(description)
     setRecipePicture(recipePicture)
-    setMethod(method)
+    setMethod(method.join('%%'))
     setPrepTime(prepTime)
     setCookTime(cookTime)
     setServingSize(servingSize)
@@ -55,9 +56,16 @@ const EditRecipePage = () => {
 
   const editRecipe = (e) => {
     e.preventDefault()
-    axios.post('/recipe/editRecipe', { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
-    console.log('hello');
+
+    // setIngredients(ingredients.split('%%'))
+
+    axios.post('/recipe/editRecipe', { id, recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
+
   }
+
+
+
+
 
   const tagCheck = event => {
     let updatedTagList = [...tags];
@@ -86,15 +94,6 @@ const EditRecipePage = () => {
     getSpecificRecipe()
   }, [])
 
-
-  const handleRecipeNameChange = event => {
-    setRecipeName(event.target.value)
-  }
-
-
-  console.log('----------', ingredients);
-  console.log('++++++++++++++', method);
-
   return (
     <>
       <Container>
@@ -102,7 +101,7 @@ const EditRecipePage = () => {
         <Form onSubmit={editRecipe}>
           <Form.Group className="mb-3" controlId="recipeName">
             <Form.Label>Recipe Name</Form.Label>
-            <Form.Control value={recipeName} onChange={handleRecipeNameChange} type="text" placeholder="enter ingredient and add here" />
+            <Form.Control value={recipeName} onChange={e => setRecipeName(e.target.value)} type="text" placeholder="enter ingredient and add here" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
@@ -118,9 +117,9 @@ const EditRecipePage = () => {
               enter the ingredients seperated by 2 percentge signs ( %% )
             </Form.Text>
             <Form.Control
-              value={ingredients?.join('%%')}
-              // value={ingredients}
-              onChange={e => setIngredients(e.target.value.split('%%'))}
+              // value={ingredients?.join('%%')}
+              value={ingredients}
+              onChange={e => setIngredients(e.target.value)}
               type="text"
             />
           </Form.Group>
@@ -131,9 +130,11 @@ const EditRecipePage = () => {
               enter the different steps seperated by 2 percentage signs ( %% )
             </Form.Text>
             <Form.Control
-              value={method?.join('%%')}
-              // value={method}
-              onChange={e => setMethod(e.target.value.split('%%'))}
+              // value={method?.join('%%')}
+              value={method}
+              // onChange={e => setMethod(e.target.value.split('%%'))}
+              onChange={e => setMethod(e.target.value)}
+
               type="text"
             />
           </Form.Group>
@@ -181,7 +182,7 @@ const EditRecipePage = () => {
           {tagsArray.map((tag, index) => (
             <div key={index}>
               <input
-                // checked={recipe.tags?.includes(tag) ? true : false}
+                checked={tags?.includes(tag) ? true : false}
                 value={tag}
                 type="checkbox"
                 onChange={tagCheck} />
