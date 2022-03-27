@@ -18,7 +18,6 @@ router.post('/editRecipe', (req, res, next) => {
   Recipe.findByIdAndUpdate(id, {
     ingredients, method, recipeName, recipePicture, description, prepTime, cookTime, servingSize, difficulty, author, tags, published
   }, { new: true })
-    // .then(updatedRecipe => console.log(updatedRecipe))
     .catch(error => next(error));
 })
 

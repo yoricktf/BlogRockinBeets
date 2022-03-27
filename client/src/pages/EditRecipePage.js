@@ -56,11 +56,8 @@ const EditRecipePage = () => {
 
   const editRecipe = (e) => {
     e.preventDefault()
-
-    // setIngredients(ingredients.split('%%'))
-
     axios.post('/recipe/editRecipe', { id, recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
-
+    navigate(`/recipes/${id}`)
   }
 
 

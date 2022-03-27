@@ -10,7 +10,6 @@ import NewRecipePage from './pages/NewRecipePage';
 import EditRecipePage from './pages/EditRecipePage';
 import ProtectedRoute from './components/ProtectedRoute';
 
-
 function App() {
   return (
     <div className="App">
