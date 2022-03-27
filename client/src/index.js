@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios'
 import { AuthProviderWrapper } from './context/auth'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './index.css';
 
 axios.defaults.baseURL = 'http://localhost:5005';
 // axios.defaults.baseURL = 'https://blog-rockin-beets.herokuapp.com';

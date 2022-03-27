@@ -1,6 +1,13 @@
 /* body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: -apple-system
+   .BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", {
+     display: inline-block;
+     background-color: ;
+     border-radius: 7px;
+     padding: 0 7px;
+     margin: 4px;
+   }
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -11,3 +18,74 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: aliceblue;
+}
+
+.btn {
+  background-color: red;
+  width: 50;
+  height: 50;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 7px;
+  padding: 0 7px;
+  margin: 4px;
+}
+
+.vegan {
+  background-color: ;
+}
+
+.breakfast {
+  background-color: ;
+}
+.lunch {
+  background-color: ;
+}
+.dinner {
+  background-color: ;
+}
+.snack {
+  background-color: ;
+}
+.dessert {
+  background-color: ;
+}
+.italian {
+  background-color: ;
+}
+.indian {
+  background-color: ;
+}
+.asian {
+  background-color: ;
+}
+.mexican {
+  background-color: ;
+}
+.salad {
+  background-color: ;
+}
+.drinks {
+  background-color: ;
+}
+.french {
+  background-color: ;
+}
+.slowcarb {
+  background-color: ;
+}
+.basics {
+  background-color: ;
+}
+.middle-eastern {
+  background-color: ;
+}

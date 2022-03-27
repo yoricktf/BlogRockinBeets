@@ -13,7 +13,7 @@ import service from "../api/service";
 const NewRecipePage = () => {
   const navigate = useNavigate()
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext)
-  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle eastern', 'french', 'slowcarb', 'basics']
+  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle-eastern', 'french', 'slowcarb', 'basics']
   // setting states for the recipe fields--------
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState('')
@@ -45,11 +45,6 @@ const NewRecipePage = () => {
     }
     setTags(updatedTagList)
   }
-
-
-
-
-
 
   const handleFileUpload = e => {
     const uploadData = new FormData();
@@ -84,7 +79,6 @@ const NewRecipePage = () => {
             <Form.Text className="text-muted">
               enter the ingredients seperated by 2 percentge signs ( %% )
             </Form.Text>
-            {/* <Form.Control onChange={e => setIngredients(e.target.value)} type="text" placeholder="" /> */}
             <Form.Control onChange={e => setIngredients(e.target.value.split('%%'))} type="text" placeholder="" />
           </Form.Group>
 

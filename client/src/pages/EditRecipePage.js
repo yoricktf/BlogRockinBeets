@@ -13,7 +13,7 @@ const EditRecipePage = () => {
 
   const navigate = useNavigate()
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext)
-  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle eastern', 'french', 'slowcarb', 'basics']
+  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle-eastern', 'french', 'slowcarb', 'basics']
   // setting states for the recipe fields--------
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState('')

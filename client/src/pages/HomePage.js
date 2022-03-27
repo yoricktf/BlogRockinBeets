@@ -4,15 +4,10 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
 
-
-
 const HomePage = () => {
-
   const [allRecipes, setAllRecipes] = useState([])
   const [query, setQuery] = useState('')
   const [randomRecipe, setRandomRecipe] = useState({})
-
-
 
   const getAllRecipes = () => {
     axios.get('recipe/getRecipes')
@@ -22,14 +17,9 @@ const HomePage = () => {
       })
   }
 
-
-
-
   useEffect(() => {
     getAllRecipes()
   }, [])
-
-  console.log(randomRecipe);
 
   return (
     <>
@@ -46,15 +36,8 @@ const HomePage = () => {
         </Card>
       </a>
 
-
-
       <Container>
         <input type="text" placeholder='search through tags or recipe names' onChange={event => setQuery(event.target.value)} style={{ width: '100%' }} />
-
-
-
-
-
         {allRecipes.filter(recipe => {
           if (query === '') {
             return recipe
@@ -69,13 +52,14 @@ const HomePage = () => {
                 <Card.Title >{recipe.recipeName}</Card.Title>
                 {/* <Card.Text>{recipe.tags}</Card.Text> */}
                 {recipe.tags?.map((tag, index) => (
-                  <Badge key={index}>{tag}</Badge>
+                  <div className={`badge  ${tag}`} key={index}>{tag}</div>
                 ))}
               </Card.ImgOverlay>
             </Card>
           </a>
         ))}
       </Container>
+      <div className='basics'></div>
     </>
   )
 }
