@@ -67,12 +67,12 @@ const NewRecipePage = () => {
         <Form onSubmit={newRecipe}>
           <Form.Group className="mb-3" controlId="recipeName">
             <Form.Label>Recipe Name</Form.Label>
-            <Form.Control onChange={e => setRecipeName(e.target.value)} type="text" placeholder="enter ingredient and add here" />
+            <Form.Control onChange={e => setRecipeName(e.target.value)} type="text" placeholder="Enter the recipes name here" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
-            <Form.Control onChange={e => setDescription(e.target.value)} type="text" placeholder="enter method step by step" />
+            <Form.Control onChange={e => setDescription(e.target.value)} type="text" placeholder="Descridbe the recipe" />
           </Form.Group>
 
           <input type="file" onChange={(e) => handleFileUpload(e)} />

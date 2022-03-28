@@ -28,7 +28,42 @@ a:hover {
 }
 
 .recipeCard {
-  margin: 500px;
+  margin: 10px;
+}
+.test {
+  width: 400px;
+}
+#basicRow {
+  display: flex;
+}
+
+.card-img-overlay {
+  padding: 0.5em;
+}
+
+.center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.allCardDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: none;
+  /* background-color: rgba(51, 51, 51, 0.17); */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.26234243697478987) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+.featuredCardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profilePicture {

@@ -32,7 +32,7 @@ const WebNavbar = () => {
 
 
   return (
-    <Navbar bg="dark" variant="dark" >
+    <Navbar fixed='top' variant='light' bg='light' >
       <Container>
         {isLoggedIn ?
           (
