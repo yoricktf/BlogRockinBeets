@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Badge from 'react-bootstrap/Badge';
 
 const HomePage = () => {
   const [allRecipes, setAllRecipes] = useState([])
@@ -17,6 +16,7 @@ const HomePage = () => {
       })
   }
 
+
   useEffect(() => {
     getAllRecipes()
   }, [])
@@ -30,7 +30,7 @@ const HomePage = () => {
           <Card.ImgOverlay>
             <Card.Title >{randomRecipe.recipeName}</Card.Title>
             {randomRecipe.tags?.map((tag, index) => (
-              <Badge key={index}>{tag}</Badge>
+              <div className={`badge  ${tag}`} key={index}>{tag}</div>
             ))}
           </Card.ImgOverlay>
         </Card>
@@ -45,12 +45,17 @@ const HomePage = () => {
             return recipe
           }
         }).map((recipe) => (
+
           <a key={recipe._id} href={`/recipes/${recipe._id}`} >
-            <Card style={{ margin: 10 }}>
+
+            <Card className={'recipeCard'} style={{ margin: 10 }}>
               <Card.Img src={recipe.recipePicture} alt="Card image" />
               <Card.ImgOverlay>
-                <Card.Title >{recipe.recipeName}</Card.Title>
-                {/* <Card.Text>{recipe.tags}</Card.Text> */}
+                <div className='cardInfo'>
+                  <Card.Title >{recipe.recipeName}</Card.Title>
+                  <img className={'profilePicture'} src={recipe.author.profilePicture} alt="" />
+                </div>
+
                 {recipe.tags?.map((tag, index) => (
                   <div className={`badge  ${tag}`} key={index}>{tag}</div>
                 ))}

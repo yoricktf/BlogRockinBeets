@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -18,7 +18,7 @@ const NewRecipePage = () => {
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState('')
   const [description, setDescription] = useState('')
-  const [recipePicture, setRecipePicture] = useState('')
+  const [recipePicture, setRecipePicture] = useState('https://res.cloudinary.com/yozzza/image/upload/v1648454914/Recipe-Images/placeholder_urymnc.jpg')
   const [method, setMethod] = useState('')
   const [prepTime, setPrepTime] = useState(0)
   const [cookTime, setCookTime] = useState(0)
@@ -31,10 +31,13 @@ const NewRecipePage = () => {
 
 
   const newRecipe = e => {
-    // e.preventDefault()
-    axios.post('/recipe/newRecipe', { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published })
+    e.preventDefault()
+    axios.post('/recipe/newRecipe', { recipeName, ingredients, recipePicture, description, method, prepTime, cookTime, servingSize, difficulty, author, tags, published });
     navigate('/')
   }
+
+
+
 
   const tagCheck = event => {
     let updatedTagList = [...tags];

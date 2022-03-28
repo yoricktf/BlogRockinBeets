@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState, useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import { AuthContext } from '../context/auth';
@@ -11,8 +11,8 @@ const RecipePage = () => {
   const { id } = useParams()
   const { isLoggedIn, user } = useContext(AuthContext)
   const [recipe, setRecipe] = useState({})
-  const [ingredients, setIngredients] = useState([])
-  const [method, setMethod] = useState([])
+  const navigate = useNavigate()
+
 
 
 
@@ -27,8 +27,11 @@ const RecipePage = () => {
   const getSpecificRecipe = async () => {
     const response = await axios.post('/recipe/specificRecipe', { id })
     setRecipe(response.data)
-    setIngredients(response.data.ingredients)
-    setMethod(response.data.method)
+  }
+
+  const deleteRecipe = () => {
+    axios.post('recipe/deleteRecipe', { id })
+    navigate('/')
   }
 
   useEffect(() => {
@@ -50,6 +53,7 @@ const RecipePage = () => {
         {user ? (user._id === recipe.author ? (
           <>
             <Button href={`/recipes/${recipe._id}/edit`}>edit this recipe</Button>
+            <Button onClick={deleteRecipe}>delete this recipe</Button>
           </>
         ) : (
           <></>

@@ -21,6 +21,14 @@ router.post('/editRecipe', (req, res, next) => {
     .catch(error => next(error));
 })
 
+router.post('/deleteRecipe', (req, res, next) => {
+  console.log(req.body);
+  Recipe.findByIdAndDelete(req.body.id)
+    .then(deletedRecipe => {
+      console.log('recipe deleted');
+    })
+})
+
 router.post("/upload", fileUploader.single("recipePicture"), (req, res, next) => {
   if (!req.file) {
     next(new Error("No file uploaded!"));
@@ -31,6 +39,7 @@ router.post("/upload", fileUploader.single("recipePicture"), (req, res, next) =>
 
 router.get('/getRecipes', (req, res, next) => {
   Recipe.find()
+    .populate('author')
     .then(allRecipes => {
       res.status(200).json(allRecipes)
     })

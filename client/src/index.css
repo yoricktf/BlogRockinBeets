@@ -27,65 +27,73 @@ a:hover {
   color: aliceblue;
 }
 
-.btn {
-  background-color: red;
-  width: 50;
-  height: 50;
+.recipeCard {
+  margin: 500px;
+}
+
+.profilePicture {
+  width: auto;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
 }
 
 .badge {
   display: inline-block;
   border-radius: 7px;
-  padding: 0 7px;
+  padding: 4px 7px;
   margin: 4px;
 }
 
 .vegan {
-  background-color: ;
+  background-color: #b39fcf;
 }
-
 .breakfast {
-  background-color: ;
+  background-color: #d9adcd;
 }
 .lunch {
-  background-color: ;
+  background-color: #edc7d3;
 }
 .dinner {
-  background-color: ;
+  background-color: #f5e8da;
 }
 .snack {
-  background-color: ;
+  background-color: #fed1c4;
 }
 .dessert {
-  background-color: ;
+  background-color: #eec1cf;
 }
 .italian {
-  background-color: ;
+  background-color: #8bd2ec;
 }
 .indian {
-  background-color: ;
+  background-color: #fff3d7;
 }
 .asian {
-  background-color: ;
+  background-color: #f6c6c7;
 }
 .mexican {
-  background-color: ;
+  background-color: #92cea8;
 }
 .salad {
-  background-color: ;
+  background-color: #fcee9e;
 }
 .drinks {
-  background-color: ;
+  background-color: #acecae;
 }
 .french {
-  background-color: ;
+  background-color: #f6edb3;
 }
 .slowcarb {
-  background-color: ;
+  background-color: #b0e3ea;
 }
 .basics {
-  background-color: ;
+  background-color: #cbb9fe;
 }
 .middle-eastern {
-  background-color: ;
+  background-color: #fdc2eb;
 }
