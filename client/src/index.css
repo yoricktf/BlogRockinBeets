@@ -1,24 +1,3 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system
-   .BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", {
-     display: inline-block;
-     background-color: ;
-     border-radius: 7px;
-     padding: 0 7px;
-     margin: 4px;
-   }
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
-
 a {
   color: white;
 }
@@ -29,12 +8,6 @@ a:hover {
 
 .recipeCard {
   margin: 10px;
-}
-.test {
-  width: 400px;
-}
-#basicRow {
-  display: flex;
 }
 
 .card-img-overlay {
@@ -60,7 +33,7 @@ a:hover {
     rgba(0, 0, 0, 0.26234243697478987) 0%,
     rgba(0, 0, 0, 0) 12%,
     rgba(0, 0, 0, 0) 74%,
-    rgba(0, 0, 0, 1) 100%
+    rgba(0, 0, 0, 0.26234243697478987) 100%
   );
 }
 .featuredCardInfo {
@@ -78,60 +51,4 @@ a:hover {
 .cardInfo {
   display: flex;
   justify-content: space-between;
-}
-
-.badge {
-  display: inline-block;
-  border-radius: 7px;
-  padding: 4px 7px;
-  margin: 4px;
-}
-
-.vegan {
-  background-color: #b39fcf;
-}
-.breakfast {
-  background-color: #d9adcd;
-}
-.lunch {
-  background-color: #edc7d3;
-}
-.dinner {
-  background-color: #f5e8da;
-}
-.snack {
-  background-color: #fed1c4;
-}
-.dessert {
-  background-color: #eec1cf;
-}
-.italian {
-  background-color: #8bd2ec;
-}
-.indian {
-  background-color: #fff3d7;
-}
-.asian {
-  background-color: #f6c6c7;
-}
-.mexican {
-  background-color: #92cea8;
-}
-.salad {
-  background-color: #fcee9e;
-}
-.drinks {
-  background-color: #acecae;
-}
-.french {
-  background-color: #f6edb3;
-}
-.slowcarb {
-  background-color: #b0e3ea;
-}
-.basics {
-  background-color: #cbb9fe;
-}
-.middle-eastern {
-  background-color: #fdc2eb;
 }

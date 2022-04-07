@@ -1,3 +1,4 @@
+import './HomePage.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
@@ -20,39 +21,108 @@ const HomePage = () => {
     getAllRecipes()
   }, [])
 
+
+  const fillInput = event => {
+    console.log(event.target.parentNode.id);
+    let inputValue = event.target.parentNode.id
+    const inputField = document.getElementById('searchInput')
+    inputField.value = inputValue
+  }
+
+
   return (
     <>
-      <a key={randomRecipe._id} href={`/recipes/${randomRecipe._id}`} >
-        <Card className={'recipeCard'}>
-          <Card.Img src={randomRecipe.recipePicture} alt="Card image" />
-          <Card.ImgOverlay className='allCardDetails'>
-            <div className='center'>
-              <div className='featuredCardInfo'>
-                <h1>Featured Recipe</h1>
-                <Card.Title >{randomRecipe.recipeName}</Card.Title>
-                {/* <img className={'profilePicture'} src={randomRecipe.author.profilePicture} alt="" /> */}
+      <a key={randomRecipe._id} href={`/recipes/${randomRecipe._id}`}>
+        <header style={{ backgroundImage: `url(${randomRecipe.recipePicture})` }}>
+
+          <div className='center'>
+            <div className='featuredCardInfo'>
+              <h1>Featured Recipe</h1>
+              <Card.Title >{randomRecipe.recipeName}</Card.Title>
+              {/* <img className={'profilePicture'} src={randomRecipe.author.profilePicture} alt="" /> */}
+            </div>
+          </div>
+        </header>
+      </a>
+      {/* ---------START----------------BASICS SECTION WITH HORIZONTAL SCROLL-----------------START----------------------- */}
+      <section className='mainBody'>
+        <h2>Check out some Basics</h2>
+        <div className='horizontalSection'>
+          {allRecipes.filter(recipe => {
+            if (recipe.tags.includes('basics')) {
+              return recipe
+            }
+          }).map(recipe => (
+            <a key={recipe._id} href={`/recipes/${recipe._id}`}>
+              <div className='horizontalCard' style={{ backgroundImage: `url(${recipe.recipePicture})` }}>
+                <h1>{recipe.recipeName}</h1>
+                <div>
+                  {recipe.tags?.map((tag, index) => (
+                    <div className={`badge  ${tag}`} key={index}>{tag}</div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </a>
+          ))}
+        </div>
+      </section>
+      {/* ---------END----------------BASICS SECTION WITH HORIZONTAL SCROLL-------------------END--------------------- */}
 
-            <div>
-              {randomRecipe.tags?.map((tag, index) => (
-                <div className={`badge  ${tag}`} key={index}>{tag}</div>
-              ))}
-            </div>
+      {/* ---------START----------------BREAKFAST COLLECTION SECTION-----------------START----------------------- */}
+      <a id='breakfast' href="#searchInput" className='breakfastSelectionLink' value='breakfast' onClick={fillInput}>
+        <p>breakfast stuff</p>
 
-          </Card.ImgOverlay>
-        </Card>
       </a>
 
+      {/* <script>
+        $(function(){
+          $('.brad_button_770103363').click(function () {
+            var paypal = $(this).text();
+            $('#paypal_donate_amount').val(paypal);
+            var paypal = null;
+          });
+});
+      </script> */}
+
+
+
+
+      {/* ---------END----------------BREAKFAST COLLECTION SECTION-------------------END--------------------- */}
+
+      {/* ---------START----------------SNACK SECTION WITH HORIZONTAL SCROLL-----------------START----------------------- */}
+      <section className='mainBody'>
+        <h2>Feeling Peckish? Make a Quick Snack</h2>
+        <div className='horizontalSection'>
+          {allRecipes.filter(recipe => {
+            if (recipe.tags.includes('snack')) {
+              return recipe
+            }
+          }).map(recipe => (
+            <a key={recipe._id} href={`/recipes/${recipe._id}`}>
+              <div className='horizontalCard' style={{ backgroundImage: `url(${recipe.recipePicture})` }}>
+                <h1>{recipe.recipeName}</h1>
+                <div>
+                  {recipe.tags?.map((tag, index) => (
+                    <div className={`badge  ${tag}`} key={index}>{tag}</div>
+                  ))}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+      {/* ---------END----------------SNACK SECTION WITH HORIZONTAL SCROLL-------------------END--------------------- */}
+
+
       <Container>
-        <input type="text" placeholder='search through tags or recipe names' onChange={event => setQuery(event.target.value)} style={{ width: '100%' }} />
+        <input id='searchInput' type="text" placeholder="try 'banana bread', or 'basics'" onChange={event => setQuery(event.target.value)} style={{ width: '100%' }} />
         {allRecipes.filter(recipe => {
           if (query === '') {
             return recipe
           } else if (recipe.recipeName.toLowerCase().includes(query.toLowerCase()) || recipe.tags.includes(query.toLowerCase())) {
             return recipe
           }
-        }).map((recipe) => (
+        }).map(recipe => (
 
           <a key={recipe._id} href={`/recipes/${recipe._id}`} >
             <Card className={'recipeCard'}>

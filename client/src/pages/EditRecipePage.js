@@ -1,3 +1,4 @@
+import './NewRecipePage.css'
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
@@ -12,8 +13,10 @@ import service from "../api/service";
 const EditRecipePage = () => {
 
   const navigate = useNavigate()
-  const { isLoggedIn, user, logoutUser } = useContext(AuthContext)
-  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle-eastern', 'french', 'slowcarb', 'basics']
+  const { user } = useContext(AuthContext)
+  // const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle-eastern', 'french', 'slowcarb', 'basics']
+  const tagsType = ['vegetarian', 'vegan', 'basics']
+  const tagsMeal = ['breakfast', 'lunch', 'dinner', 'snack', 'side', 'dessert', 'drinks']
   // setting states for the recipe fields--------
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState('')
@@ -89,7 +92,7 @@ const EditRecipePage = () => {
 
   useEffect(() => {
     getSpecificRecipe()
-  }, [])
+  })
 
   return (
     <>
@@ -176,17 +179,66 @@ const EditRecipePage = () => {
               </Form.Select>
             </Col>
           </Row>
-          {tagsArray.map((tag, index) => (
-            <div key={index}>
-              <input
-                checked={tags?.includes(tag) ? true : false}
-                value={tag}
-                type="checkbox"
-                onChange={tagCheck} />
-              <span>{tag}</span>
-            </div>
-          ))}
-          <Button variant="danger" type="submit">
+          <h4>Tags</h4>
+          <hr />
+          <Col className='checkBoxes'>
+            {tagsType.map((tag, index) => (
+              <div className='checkBox' key={index}>
+                <input
+                  checked={tags?.includes(tag) ? true : false}
+                  value={tag}
+                  type="checkbox"
+                  onChange={tagCheck} />
+                <span> {tag}</span>
+              </div>
+            ))}
+          </Col>
+
+          <hr />
+          <Col className='checkBoxes'>
+            {tagsMeal.map((tag, index) => (
+              <div className='checkBox' key={index}>
+                <input
+                  checked={tags?.includes(tag) ? true : false}
+                  value={tag}
+                  type="checkbox"
+                  onChange={tagCheck} />
+                <span> {tag}</span>
+              </div>
+            ))}
+          </Col>
+
+
+
+
+          {/* <hr />
+          <Col className='checkBoxes'>
+            {tagsType.map((tag, index) => (
+              <div className='checkBox' key={index}>
+                <input value={tag} type="checkbox" onChange={tagCheck} />
+                <span> {tag}</span>
+              </div>
+            ))}
+          </Col>
+          <hr />
+          <Col className='checkBoxes'>
+            {tagsMeal.map((tag, index) => (
+              <div className='checkBox' key={index}>
+                <input value={tag} type="checkbox" onChange={tagCheck} />
+                <span> {tag}</span>
+              </div>
+            ))}
+          </Col> */}
+
+
+
+
+
+
+
+
+
+          <Button className='submitButton' variant="danger" type="submit">
             Update Recipe
           </Button>
         </Form>

@@ -1,0 +1,78 @@
+.mainBody {
+  /* padding: 10px; */
+}
+
+header {
+  height: 95vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.horizontalCard {
+  width: 300px;
+  height: 400px;
+  padding: 10px;
+  margin: 10px 10px 10px 10px;
+  border-radius: 5px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+
+.horizontalCard:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 5px rgb(189, 189, 189);
+}
+
+/* .horizontalCard > h1 {
+  padding: 5px;
+} */
+
+.horizontalSection {
+  display: flex;
+  overflow: auto;
+  padding: 10px 10px 20px;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 7px;
+  padding: 4px 7px;
+  margin: 4px;
+}
+.vegan {
+  background-color: #b39fcf;
+}
+.vegetarian {
+  background-color: #b0e3ea;
+}
+.basics {
+  background-color: #cbb9fe;
+}
+.breakfast {
+  background-color: #d9adcd;
+}
+.lunch {
+  background-color: #edc7d3;
+}
+.dinner {
+  background-color: #f5e8da;
+}
+.sides {
+  background-color: #fdc2eb;
+}
+.snack {
+  background-color: #fed1c4;
+}
+.dessert {
+  background-color: #eec1cf;
+}
+.drinks {
+  background-color: #acecae;
+}

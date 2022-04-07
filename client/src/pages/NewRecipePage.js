@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import './NewRecipePage.css'
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -12,8 +13,10 @@ import service from "../api/service";
 
 const NewRecipePage = () => {
   const navigate = useNavigate()
-  const { isLoggedIn, user, logoutUser } = useContext(AuthContext)
-  const tagsArray = ['vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'italian', 'indian', 'asian', 'mexican', 'salad', 'drinks', 'middle-eastern', 'french', 'slowcarb', 'basics']
+  const { user } = useContext(AuthContext)
+  // const tagsArray = ['vegetarian', 'vegan', 'breakfast', 'lunch', 'dinner', 'snack', 'side', 'dessert', 'drinks', 'basics']
+  const tagsType = ['vegetarian', 'vegan', 'basics']
+  const tagsMeal = ['breakfast', 'lunch', 'dinner', 'snack', 'side', 'dessert', 'drinks']
   // setting states for the recipe fields--------
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState('')
@@ -22,11 +25,11 @@ const NewRecipePage = () => {
   const [method, setMethod] = useState('')
   const [prepTime, setPrepTime] = useState(0)
   const [cookTime, setCookTime] = useState(0)
-  const [servingSize, setServingSize] = useState(0)
+  const [servingSize, setServingSize] = useState('-')
   const [difficulty, setDifficulty] = useState('')
   const [tags, setTags] = useState([])
-  const [author, setAuthor] = useState(user)
-  const [published, setPublished] = useState(false)
+  const [author] = useState(user)
+  const [published] = useState(false)
   // -----------------------------------------------
 
 
@@ -133,12 +136,26 @@ const NewRecipePage = () => {
               </Form.Select>
             </Col>
           </Row>
-          {tagsArray.map((tag, index) => (
-            <div key={index}>
-              <input value={tag} type="checkbox" onChange={tagCheck} />
-              <span>{tag}</span>
-            </div>
-          ))}
+          <h4>Tags</h4>
+          <hr />
+          <Col className='checkBoxes'>
+            {tagsType.map((tag, index) => (
+              <div className='checkBox' key={index}>
+                <input value={tag} type="checkbox" onChange={tagCheck} />
+                <span> {tag}</span>
+              </div>
+            ))}
+          </Col>
+          <hr />
+          <Col className='checkBoxes'>
+            {tagsMeal.map((tag, index) => (
+              <div className='checkBox' key={index}>
+                <input value={tag} type="checkbox" onChange={tagCheck} />
+                <span> {tag}</span>
+              </div>
+            ))}
+          </Col>
+
           <Button variant="danger" type="submit">
             Make Recipe
           </Button>

@@ -32,24 +32,35 @@ const WebNavbar = () => {
 
 
   return (
-    <Navbar fixed='top' variant='light' bg='light' >
+    <Navbar
+      fixed='top'
+      // className='navbar-static-top'
+      variant='light'
+      bg='light'
+    >
       <Container>
         {isLoggedIn ?
           (
             <div>
+              <Button href='/recipes/new'>New Recipe</Button>
+              <Button variant='danger' onClick={logoutUser}>Log Out</Button>
               <Navbar.Brand href="/">
                 Blog Rockin Beets
               </Navbar.Brand>
-              <Button href='/recipes/new'>New Recipe</Button>
-              <Button variant='danger' onClick={logoutUser}>Log Out</Button>
+
+              <Button href='#searchInput'>Search</Button>
             </div>
           ) : (
-            <Navbar.Brand href="/">
-              Blog Rockin Beets
-            </Navbar.Brand>
+            <>
+              <Navbar.Brand href="/">
+                Blog Rockin Beets
+              </Navbar.Brand>
+              <Button>Search</Button>
+            </>
+
           )}
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
 

@@ -9,25 +9,25 @@ import { AuthContext } from '../context/auth';
 
 const RecipePage = () => {
   const { id } = useParams()
-  const { isLoggedIn, user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [recipe, setRecipe] = useState({})
   const navigate = useNavigate()
 
 
 
 
-  // const getSpecificRecipe = () => {
-  //   console.log('object');
-  //   axios.post('recipe/specificRecipe', { id })
-  //     .then(recipe => {
-  //       setRecipe(recipe.data)
-  //     })
-  // }
-
-  const getSpecificRecipe = async () => {
-    const response = await axios.post('/recipe/specificRecipe', { id })
-    setRecipe(response.data)
+  const getSpecificRecipe = () => {
+    console.log('object');
+    axios.post('recipe/specificRecipe', { id })
+      .then(recipe => {
+        setRecipe(recipe.data)
+      })
   }
+  // ------------THIS IS THE SAME METHOD AS ABOVE BUT USING ASYNC TO TRY AND DEBUG A PROBLEM WITH LOADING TIME----------
+  // const getSpecificRecipe = async () => {
+  //   const response = await axios.post('/recipe/specificRecipe', { id })
+  //   setRecipe(response.data)
+  // }
 
   const deleteRecipe = () => {
     axios.post('recipe/deleteRecipe', { id })
@@ -36,17 +36,18 @@ const RecipePage = () => {
 
   useEffect(() => {
     getSpecificRecipe()
-  }, [])
+  })
 
 
 
   return (
     <>
-      <div style={{
+      <div className='recipeShowPagePicture' style={{
         backgroundImage: `url(${recipe.recipePicture})`,
         height: 500, width: '100%', backgroundSize: 'cover', textAlign: 'center',
       }}>
         <h1>{recipe.recipeName}</h1>
+
       </div>
       <Container>
 
