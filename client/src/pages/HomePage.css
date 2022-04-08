@@ -2,6 +2,12 @@
   /* padding: 10px; */
 }
 
+*{
+  font-family: 'Bebas Neue', sans-serif;
+  /* font-size: 1em; */
+
+}
+
 header {
   height: 95vh;
   background-position: center;

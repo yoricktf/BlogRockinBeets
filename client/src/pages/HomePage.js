@@ -71,9 +71,7 @@ const HomePage = () => {
       {/* ---------START----------------BREAKFAST COLLECTION SECTION-----------------START----------------------- */}
 
 
-      <section className='highlightedTags'>
 
-      </section>
 
 
 
