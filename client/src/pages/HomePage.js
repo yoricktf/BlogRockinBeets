@@ -22,12 +22,12 @@ const HomePage = () => {
   }, [])
 
 
-  const fillInput = event => {
-    console.log(event.target.parentNode.id);
-    let inputValue = event.target.parentNode.id
-    const inputField = document.getElementById('searchInput')
-    inputField.value = inputValue
-  }
+  // const fillInput = event => {
+  //   console.log(event.target.parentNode.id);
+  //   let inputValue = event.target.parentNode.id
+  //   const inputField = document.getElementById('searchInput')
+  //   inputField.value = inputValue
+  // }
 
 
   return (
@@ -69,10 +69,11 @@ const HomePage = () => {
       {/* ---------END----------------BASICS SECTION WITH HORIZONTAL SCROLL-------------------END--------------------- */}
 
       {/* ---------START----------------BREAKFAST COLLECTION SECTION-----------------START----------------------- */}
-      <a id='breakfast' href="#searchInput" className='breakfastSelectionLink' value='breakfast' onClick={fillInput}>
-        <p>breakfast stuff</p>
 
-      </a>
+
+      <section className='highlightedTags'>
+
+      </section>
 
 
 

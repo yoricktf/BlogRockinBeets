@@ -36,7 +36,7 @@ const RecipePage = () => {
 
   useEffect(() => {
     getSpecificRecipe()
-  })
+  }, [])
 
 
 
