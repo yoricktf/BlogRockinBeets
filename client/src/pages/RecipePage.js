@@ -1,3 +1,4 @@
+import './RecipePage.css'
 import axios from 'axios'
 import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -38,18 +39,47 @@ const RecipePage = () => {
     getSpecificRecipe()
   }, [])
 
-
+  console.log(recipe)
 
   return (
     <>
-      <div className='recipeShowPagePicture' style={{
-        backgroundImage: `url(${recipe.recipePicture})`,
-        height: 500, width: '100%', backgroundSize: 'cover', textAlign: 'center',
-      }}>
-        <h1>{recipe.recipeName}</h1>
-
+      <div className='recipeShowPagePicture' style={{ backgroundImage: `url(${recipe.recipePicture})` }}>
+        <h1 className='recipeTitle'>{recipe.recipeName}</h1>
+        <div className="details">
+          <p>PrepTime: {recipe.prepTime}</p>
+          <p>Cooktime: {recipe.cookTime}</p>
+          <p>Serving Size: {recipe.servingSize}</p>
+          <p>Difficulty: {recipe.difficulty}</p>
+          {/* <img src={recipe.author.profilePicture} className={'profilePicture'} alt="" /> */}
+        </div>
       </div>
       <Container>
+        <h2>Description</h2>
+        <p>{recipe.description}</p>
+        <hr />
+        <section id='recipeBody'>
+          <section className='instruction'>
+            <h2>Ingredients</h2>
+
+            <ul>
+              {recipe.ingredients?.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ul>
+          </section>
+          <hr />
+          <section className='instruction'>
+            <h2>Method</h2>
+            <ol>
+              {recipe.method?.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ol>
+          </section>
+
+
+        </section>
+
 
         {user ? (user._id === recipe.author ? (
           <>
@@ -61,22 +91,6 @@ const RecipePage = () => {
         )) : (
           <></>
         )}
-
-        <h2>Description</h2>
-        <p>{recipe.description}</p>
-        <h2>Ingredients</h2>
-
-        <ul>
-          {recipe.ingredients?.map((step, index) => (
-            <li key={index}>{step}</li>
-          ))}
-        </ul>
-        <h2>Method</h2>
-        <ol>
-          {recipe.method?.map((step, index) => (
-            <li key={index}>{step}</li>
-          ))}
-        </ol>
       </Container>
     </>
   )

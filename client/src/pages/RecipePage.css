@@ -1,0 +1,45 @@
+.recipeShowPagePicture {
+  height: 500px;
+  width: '100%';
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.details{
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 45%);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+height: 100px;
+display: flex;
+align-items: center;
+padding: 10px;
+justify-content: space-around;
+}
+.details > p {
+  margin-bottom: 0;
+}
+
+.recipeTitle{
+  background-color: white;
+  padding: 10px;
+  text-decoration: underline;
+  border-radius: 5px;
+}
+
+
+@media only screen and (min-width: 769px) {
+  #recipeBody {
+    display: flex;
+
+  }
+
+  .instruction {
+    margin: 20px;
+  }
+}
