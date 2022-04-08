@@ -74,15 +74,7 @@ const HomePage = () => {
 
       </a>
 
-      {/* <script>
-        $(function(){
-          $('.brad_button_770103363').click(function () {
-            var paypal = $(this).text();
-            $('#paypal_donate_amount').val(paypal);
-            var paypal = null;
-          });
-});
-      </script> */}
+
 
 
 

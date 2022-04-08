@@ -55,7 +55,7 @@ const WebNavbar = () => {
               <Navbar.Brand href="/">
                 Blog Rockin Beets
               </Navbar.Brand>
-              <Button>Search</Button>
+              <Button href='#searchInput'>Search</Button>
             </>
 
           )}
