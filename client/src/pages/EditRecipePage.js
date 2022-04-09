@@ -92,7 +92,7 @@ const EditRecipePage = () => {
 
   useEffect(() => {
     getSpecificRecipe()
-  })
+  },[])
 
   return (
     <>

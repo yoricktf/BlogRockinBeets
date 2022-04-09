@@ -15,14 +15,18 @@
   width: 100%;
   position: absolute;
   bottom: 0;
-height: 100px;
-display: flex;
-align-items: center;
-padding: 10px;
-justify-content: space-around;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-around;
 }
 .details > p {
   margin-bottom: 0;
+}
+
+.instruction {
+  min-width: 40%;
 }
 
 .recipeTitle{
