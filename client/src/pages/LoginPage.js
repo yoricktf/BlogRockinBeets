@@ -2,6 +2,9 @@ import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from '../context/auth'
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 
 const Login = () => {
@@ -48,19 +51,34 @@ const Login = () => {
 
   return (
     <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email: </label>
-        <input type="text" value={email} onChange={handleEmail} />
-        <label htmlFor="password">Password: </label>
-        <input type="password" value={password} onChange={handlePassword} />
-        <button type="submit">Log In</button>
-      </form>
 
-      {errorMessage && <h5>{errorMessage}</h5>}
+      <Container>
+        <h1>Login</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Email:</Form.Label>
+            <Form.Control onChange={e => setEmail(e.target.value)} />
+          </Form.Group>
 
-      <h3>Don't have an account?</h3>
-      <Link to='/signup'>Signup</Link>
+          <Form.Group>
+            <Form.Label>Password:</Form.Label>
+            <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
+          </Form.Group>
+
+          <Button type="submit">
+            Login
+          </Button>
+        </Form>
+        {errorMessage && <h5>{errorMessage}</h5>}
+
+        <h3>Don't have an account?</h3>
+        <Link to='/signup'>Signup</Link>
+
+
+      </Container>
+
+
+
     </>
 
 
