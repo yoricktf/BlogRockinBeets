@@ -36,7 +36,7 @@ const HomePage = () => {
         <header style={{ backgroundImage: `url(${randomRecipe.recipePicture})` }}>
 
           <div className='center'>
-            <div className='featuredCardInfo'>
+            <div className='featuredCardInfo recipeTitle'>
               <h1>Featured Recipe</h1>
               <Card.Title >{randomRecipe.recipeName}</Card.Title>
               {/* <img className={'profilePicture'} src={randomRecipe.author.profilePicture} alt="" /> */}
@@ -58,7 +58,7 @@ const HomePage = () => {
                 <h1>{recipe.recipeName}</h1>
                 <div>
                   {recipe.tags?.map((tag, index) => (
-                    <div className={`badge  ${tag}`} key={index}>{tag}</div>
+                    <div className={`badge  ${tag}`} key={index}><span>{tag}</span></div>
                   ))}
                 </div>
               </div>
@@ -94,7 +94,7 @@ const HomePage = () => {
                 <h1>{recipe.recipeName}</h1>
                 <div>
                   {recipe.tags?.map((tag, index) => (
-                    <div className={`badge  ${tag}`} key={index}>{tag}</div>
+                    <div className={`badge  ${tag}`} key={index}><span>{tag}</span></div>
                   ))}
                 </div>
               </div>
@@ -125,7 +125,7 @@ const HomePage = () => {
                 </div>
                 <div>
                   {recipe.tags?.map((tag, index) => (
-                    <div className={`badge  ${tag}`} key={index}>{tag}</div>
+                    <div className={`badge  ${tag}`} key={index}> <span>{tag}</span> </div>
                   ))}
                 </div>
 

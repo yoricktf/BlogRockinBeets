@@ -41,21 +41,25 @@ const WebNavbar = () => {
       <Container>
         {isLoggedIn ?
           (
-            <div>
-              <Button href='/recipes/new'>New Recipe</Button>
-              <Button variant='danger' onClick={logoutUser}>Log Out</Button>
+            <>
               <Navbar.Brand href="/">
                 Blog Rockin Beets
               </Navbar.Brand>
+              <div className="userOptions">
+                <Button href='/recipes/new'>New Recipe</Button>
+                <Button variant='danger' onClick={logoutUser}>Log Out</Button>
 
-              <Button href='#searchInput'>Search</Button>
-            </div>
+              </div>
+            </>
           ) : (
             <>
               <Navbar.Brand href="/">
                 Blog Rockin Beets
               </Navbar.Brand>
-              <Button href='#searchInput'>Search</Button>
+              <div className="userOptions">
+                <Button href='/login'>Login</Button>
+                <Button href='/signup'>signup</Button>
+              </div>
             </>
 
           )}

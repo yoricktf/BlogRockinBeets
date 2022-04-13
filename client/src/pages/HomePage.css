@@ -56,7 +56,13 @@ header {
   border-radius: 7px;
   padding: 4px 7px;
   margin: 4px;
+
 }
+
+span{
+font-size: 1.5em;
+}
+
 .vegan {
   background-color: #b39fcf;
 }
@@ -73,13 +79,13 @@ header {
   background-color: #edc7d3;
 }
 .dinner {
-  background-color: #f5e8da;
+  background-color: #f5d7b7;
 }
 .sides {
   background-color: #fdc2eb;
 }
 .snack {
-  background-color: #fed1c4;
+  background-color: #f4c2b4;
 }
 .dessert {
   background-color: #eec1cf;
