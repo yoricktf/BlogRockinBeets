@@ -19,9 +19,17 @@ const uploadImage = (file) => {
     .catch(errorHandler);
 };
 
+const uploadProfileImage = (file) => {
+  return axios
+    .post("/auth/upload", file)
+    .then(res => res.data)
+    .catch(errorHandler);
+};
+
 
 
 export default {
   service,
   uploadImage,
+  uploadProfileImage,
 };

@@ -4,12 +4,14 @@ import axios from 'axios'
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import service from "../api/service";
 
 export default function Signup() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [profilePicture, setProfilePicture] = useState('https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png')
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate()
@@ -17,7 +19,7 @@ export default function Signup() {
   const handleSubmit = e => {
     e.preventDefault()
     console.log('+++++++++++++++++++++++++++++++++++++++');
-    const requestBody = { email, password, name }
+    const requestBody = { email, password, name, profilePicture }
     axios.post('/auth/signup', requestBody)
       .then(response => {
         // redirect to login
@@ -28,6 +30,18 @@ export default function Signup() {
         setErrorMessage(errorDescription)
       })
   }
+
+  const handleFileUpload = e => {
+    const uploadData = new FormData();
+    uploadData.append("profilePicture", e.target.files[0]);
+    service
+      .uploadProfileImage(uploadData)
+      .then(response => {
+        setProfilePicture(response.secure_url);
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
+  };
+
 
 
 
@@ -41,6 +55,12 @@ export default function Signup() {
             <Form.Label>Email:</Form.Label>
             <Form.Control value={email} onChange={e => setEmail(e.target.value)} />
           </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Profile Picture:</Form.Label>
+            <input type="file" onChange={(e) => handleFileUpload(e)} />
+          </Form.Group>
+
 
           <Form.Group>
             <Form.Label>Name:</Form.Label>

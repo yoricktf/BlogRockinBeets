@@ -3,11 +3,12 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/User.model')
 const jwt = require('jsonwebtoken');
 const { isAuthenticated } = require("../middleware/jwt");
+const fileUploader = require("../config/cloudinary.config");
 
 
 
 router.post('/signup', (req, res, next) => {
-  const { email, password, name } = req.body
+  const { email, password, name, profilePicture } = req.body
   // check if email or name or password are empty
   if (email === '' || password === '' || name === '') {
     res.status(400).json({ message: 'Provide email, password and name' })
@@ -35,7 +36,7 @@ router.post('/signup', (req, res, next) => {
       const salt = bcrypt.genSaltSync();
       const hashedPassword = bcrypt.hashSync(password, salt)
       // create the new user
-      return User.create({ email, password: hashedPassword, name })
+      return User.create({ email, password: hashedPassword, name, profilePicture })
         .then(createdUser => {
           const { email, name, _id } = createdUser
           const user = { email, name, _id }
@@ -79,6 +80,14 @@ router.post('/login', (req, res, next) => {
       console.log(err)
       res.status(500).json({ message: 'Internal Server Error' })
     })
+});
+
+router.post("/upload", fileUploader.single("profilePicture"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
+  }
+  res.json({ secure_url: req.file.path });
 });
 
 router.get('/verify', isAuthenticated, (req, res, next) => {
