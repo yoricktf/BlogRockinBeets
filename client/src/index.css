@@ -1,9 +1,10 @@
 a {
-  color: white;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
 }
 
 a:hover {
-  color: aliceblue;
+  /* color: black; */
 }
 
 .recipeCard {
