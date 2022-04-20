@@ -1,4 +1,4 @@
-import './NewRecipePage.css'
+import './New&EditRecipePage.css'
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
@@ -92,12 +92,12 @@ const EditRecipePage = () => {
 
   useEffect(() => {
     getSpecificRecipe()
-  },[])
+  }, [])
 
   return (
     <>
       <Container>
-        <h1>EDIT RecipePage</h1>
+        <h1>Edit Recipe</h1>
         <Form onSubmit={editRecipe}>
           <Form.Group className="mb-3" controlId="recipeName">
             <Form.Label>Recipe Name</Form.Label>
@@ -109,7 +109,10 @@ const EditRecipePage = () => {
             <Form.Control value={description} onChange={e => setDescription(e.target.value)} type="text" placeholder="enter method step by step" />
           </Form.Group>
 
-          <input type="file" onChange={(e) => handleFileUpload(e)} />
+          <Form.Group>
+            <Form.Label>Recipe Picture</Form.Label>
+            <input className='pictureUpload' type="file" onChange={(e) => handleFileUpload(e)} />
+          </Form.Group>
 
           <Form.Group className="mb-3" controlId="">
             <Form.Label>Ingredients</Form.Label>

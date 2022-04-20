@@ -1,4 +1,4 @@
-import './NewRecipePage.css'
+import './New&EditRecipePage.css'
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
@@ -66,7 +66,7 @@ const NewRecipePage = () => {
   return (
     <>
       <Container>
-        <h1>NewRecipePage</h1>
+        <h1>New Recipe</h1>
         <Form onSubmit={newRecipe}>
           <Form.Group className="mb-3" controlId="recipeName">
             <Form.Label>Recipe Name</Form.Label>
@@ -78,7 +78,11 @@ const NewRecipePage = () => {
             <Form.Control onChange={e => setDescription(e.target.value)} type="text" placeholder="Descridbe the recipe" />
           </Form.Group>
 
-          <input type="file" onChange={(e) => handleFileUpload(e)} />
+          <Form.Group>
+            <Form.Label>Recipe Picture</Form.Label>
+            <input className='pictureUpload' type="file" onChange={(e) => handleFileUpload(e)} />
+          </Form.Group>
+
 
           <Form.Group className="mb-3" controlId="">
             <Form.Label>Ingredients</Form.Label>

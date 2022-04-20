@@ -1,5 +1,6 @@
 .checkBoxes {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .checkBox {
@@ -8,4 +9,12 @@
 
 .btn {
   margin-right: 10px;
+}
+
+.pictureUpload {
+  display: block;
+}
+
+.form-text {
+  padding-left: 10px;
 }
