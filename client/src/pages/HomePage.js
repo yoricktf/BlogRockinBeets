@@ -55,12 +55,15 @@ const HomePage = () => {
           }).map(recipe => (
             <a key={recipe._id} href={`/recipes/${recipe._id}`}>
               <div className='horizontalCard' style={{ backgroundImage: `url(${recipe.recipePicture})` }}>
-                <h1>{recipe.recipeName}</h1>
-                <div>
-                  {recipe.tags?.map((tag, index) => (
-                    <div className={`badge  ${tag}`} key={index}><span>{tag}</span></div>
-                  ))}
+                <div className='overlay'>
+                  <h1>{recipe.recipeName}</h1>
+                  <div>
+                    {recipe.tags?.map((tag, index) => (
+                      <div className={`badge  ${tag}`} key={index}><span>{tag}</span></div>
+                    ))}
+                  </div>
                 </div>
+
               </div>
             </a>
           ))}
@@ -91,11 +94,13 @@ const HomePage = () => {
           }).map(recipe => (
             <a key={recipe._id} href={`/recipes/${recipe._id}`}>
               <div className='horizontalCard' style={{ backgroundImage: `url(${recipe.recipePicture})` }}>
-                <h1>{recipe.recipeName}</h1>
-                <div>
-                  {recipe.tags?.map((tag, index) => (
-                    <div className={`badge  ${tag}`} key={index}><span>{tag}</span></div>
-                  ))}
+                <div className='overlay'>
+                  <h1>{recipe.recipeName}</h1>
+                  <div>
+                    {recipe.tags?.map((tag, index) => (
+                      <div className={`badge  ${tag}`} key={index}><span>{tag}</span></div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </a>
@@ -104,9 +109,13 @@ const HomePage = () => {
       </section>
       {/* ---------END----------------SNACK SECTION WITH HORIZONTAL SCROLL-------------------END--------------------- */}
 
-
       <Container>
         <input id='searchInput' type="text" placeholder="try 'banana bread', or 'basics'" onChange={event => setQuery(event.target.value)} style={{ width: '100%' }} />
+      </Container>
+
+
+      <Container className='directory'>
+
         {allRecipes.filter(recipe => {
           if (query === '') {
             return recipe
@@ -115,12 +124,36 @@ const HomePage = () => {
           }
         }).map(recipe => (
 
-          <a key={recipe._id} href={`/recipes/${recipe._id}`} >
+          <a className='testing' key={recipe._id} href={`/recipes/${recipe._id}`} >
+            {/* <div className='searchCard' style={{ backgroundImage: `url(${recipe.recipePicture})` }} >
+
+              <div className="overlay">
+                <div className='cardInfo'>
+                  <h1>{recipe.recipeName}</h1>
+                  <img className='profilePicture' src={recipe.author.profilePicture} alt="" />
+                </div>
+                <div>
+                  {recipe.tags?.map((tag, index) => (
+                    <div className={`badge  ${tag}`} key={index}> <span>{tag}</span> </div>
+                  ))}
+                </div>
+              </div>
+            </div> */}
+
+
+
+
+
+
+
+
+
+
             <Card className={'recipeCard'}>
               <Card.Img src={recipe.recipePicture} alt="Card image" />
               <Card.ImgOverlay className='allCardDetails'>
                 <div className='cardInfo'>
-                  <Card.Title >{recipe.recipeName}</Card.Title>
+                  <h1 >{recipe.recipeName}</h1>
                   <img className={'profilePicture'} src={recipe.author.profilePicture} alt="" />
                 </div>
                 <div>

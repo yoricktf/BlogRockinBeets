@@ -1,6 +1,4 @@
-*{
-  font-family: 'Bebas Neue', sans-serif;
-}
+
 
 header {
   height: 95vh;
@@ -8,6 +6,25 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.mainBody > h2 {
+  margin: 10px 20px 0;
+  /* margin-top: 20px; */
+}
+
+.horizontalSection {
+  display: flex;
+  overflow: auto;
+  padding: 10px 10px 20px;
+  /* hide horizontal scroll bar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+.horizontalSection::-webkit-scrollbar {
+  display: none;
 }
 
 .horizontalCard {
@@ -21,6 +38,11 @@ header {
   background-repeat: no-repeat;
 }
 
+.horizontalCard:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 5px rgb(189, 189, 189);
+}
+
 .overlay {
   border-radius: 5px;
   padding: 10px;
@@ -32,27 +54,74 @@ header {
   background: rgba(0, 0, 0, 0.150);
 }
 
-.overlay h1{
+.overlay h1,
+.cardInfo h1 {
   color: #fff;
-}
-
-.horizontalCard:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 0px 5px rgb(189, 189, 189);
+  text-decoration: none;
 }
 
 .overlay:hover {
   background: none;
 }
 
-.overlay:hover h1 {
+.overlay:hover h1,
+.recipeCard:hover h1 {
   color: red;
 }
 
-.horizontalSection {
+.recipeCard {
+  margin: 10px;
+}
+
+ {
+
+  color: red;
+}
+
+
+
+.card-img-overlay {
+  padding: 0.5em;
+}
+
+.center {
+  height: 100%;
   display: flex;
-  overflow: auto;
-  padding: 10px 10px 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.allCardDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: none;
+  /* background-color: rgba(51, 51, 51, 0.17); */
+  background: rgb(0, 0, 0);
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.26234243697478987) 0%,
+      rgba(0, 0, 0, 0) 12%,
+      rgba(0, 0, 0, 0) 74%,
+      rgba(0, 0, 0, 0.26234243697478987) 100%);
+}
+
+.featuredCardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+
+}
+
+.profilePicture {
+  width: auto;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
 }
 
 .badge {
