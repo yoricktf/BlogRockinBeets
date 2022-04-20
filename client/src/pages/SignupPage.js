@@ -1,3 +1,4 @@
+import './Signup&LoginPage.css'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -58,7 +59,7 @@ export default function Signup() {
 
           <Form.Group>
             <Form.Label>Profile Picture:</Form.Label>
-            <input type="file" onChange={(e) => handleFileUpload(e)} />
+            <input className='profileUpload' type="file" onChange={(e) => handleFileUpload(e)} />
           </Form.Group>
 
 
@@ -72,7 +73,7 @@ export default function Signup() {
             <Form.Control value={password} type="password" onChange={e => setPassword(e.target.value)} />
           </Form.Group>
 
-          <Button type="submit">
+          <Button className='submitButton' type="submit">
             Sign Up
           </Button>
 
@@ -82,23 +83,6 @@ export default function Signup() {
         <Link to='/login'>Login</Link>
 
       </Container>
-      {/* <h1>Signup</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email: </label>
-        <input type="text" value={email} onChange={handleEmail} />
-        <label htmlFor="password">Password: </label>
-        <input type="password" value={password} onChange={handlePassword} />
-        <label htmlFor="name">Name: </label>
-        <input type="text" value={name} onChange={handleName} />
-        <button type="submit">Sign Up</button>
-      </form>
-
-      {errorMessage && <h5>{errorMessage}</h5>}
-
-
-
-      <h3>Already have an account?</h3>
-      <Link to='/login'>Login</Link> */}
     </>
   )
 }

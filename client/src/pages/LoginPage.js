@@ -1,3 +1,4 @@
+import './Signup&LoginPage.css'
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -8,14 +9,10 @@ import Button from 'react-bootstrap/Button';
 
 
 const Login = () => {
-
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(undefined);
-
   const navigate = useNavigate()
-
   const { storeToken, verifyStoredToken } = useContext(AuthContext)
 
   const handleSubmit = e => {
@@ -45,11 +42,8 @@ const Login = () => {
   }
 
 
-
-
   return (
     <>
-
       <Container>
         <h1>Login</h1>
         <Form onSubmit={handleSubmit}>
@@ -63,7 +57,7 @@ const Login = () => {
             <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
           </Form.Group>
 
-          <Button type="submit">
+          <Button className='submitButton' type="submit">
             Login
           </Button>
         </Form>

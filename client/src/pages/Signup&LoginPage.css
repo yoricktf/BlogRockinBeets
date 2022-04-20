@@ -1,0 +1,13 @@
+.submitButton {
+  margin: 10px 0;
+}
+
+.form-label {
+  margin-bottom: 0 !important;
+  margin-top: 0.5rem;
+
+}
+
+.profileUpload {
+  display: block;
+}
