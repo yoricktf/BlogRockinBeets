@@ -124,7 +124,7 @@ const HomePage = () => {
           }
         }).map(recipe => (
 
-          <a className='testing' key={recipe._id} href={`/recipes/${recipe._id}`} >
+          <a key={recipe._id} href={`/recipes/${recipe._id}`} >
             {/* <div className='searchCard' style={{ backgroundImage: `url(${recipe.recipePicture})` }} >
 
               <div className="overlay">

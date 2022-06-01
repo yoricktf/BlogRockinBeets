@@ -21,6 +21,12 @@ header {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
+
+  scroll-snap-type: x mandatory;
+scroll-padding: 0 24px;
+scroll-snap-align: start;
+
+
 }
 
 .horizontalSection::-webkit-scrollbar {
@@ -36,6 +42,8 @@ header {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  scroll-snap-align: start;
 }
 
 .horizontalCard:hover {
