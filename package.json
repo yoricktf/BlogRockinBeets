@@ -12,7 +12,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3",
+    "express": "^4.18.1",
     "express-jwt": "^6.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.0",
@@ -22,5 +22,18 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "description": "![Website](https://img.shields.io/website?label=BlogRockinBeets&style=flat-square&url=https%3A%2F%2Fblog-rockin-beets.herokuapp.com%2F)",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoricktf/BlogRockinBeets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoricktf/BlogRockinBeets/issues"
+  },
+  "homepage": "https://github.com/yoricktf/BlogRockinBeets#readme"
 }

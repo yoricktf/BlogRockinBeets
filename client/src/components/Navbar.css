@@ -8,6 +8,10 @@
 padding: 0 !important;
 }
 
+.dropdown-toggle::after {
+  display: none !important;
+}
+
 @media only screen and (max-width: 417px) {
   .navbar-light .navbar-brand {
     font-size: 1.3em;

@@ -8,6 +8,7 @@ import SignupPage from './pages/SignupPage';
 import UserRecipesPage from './pages/UserRecipesPage';
 import NewRecipePage from './pages/NewRecipePage';
 import EditRecipePage from './pages/EditRecipePage';
+import SettingsPage from './pages/SettingsPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -28,6 +29,12 @@ function App() {
         <Route path='/recipes/new' element={
           <ProtectedRoute redirectTo='/login'>
             <NewRecipePage />
+          </ProtectedRoute>
+        }
+        />
+        <Route path='/settings' element={
+          <ProtectedRoute redirectTo='/login'>
+            <SettingsPage />
           </ProtectedRoute>
         }
         />
